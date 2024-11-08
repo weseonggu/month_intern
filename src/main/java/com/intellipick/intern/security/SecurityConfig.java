@@ -1,7 +1,5 @@
-package com.sparta26.baemin.security;
+package com.intellipick.intern.security;
 
-import com.sparta26.baemin.jwt.JWTFilter;
-import com.sparta26.baemin.jwt.JwtAuthenticationEntryPoint;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

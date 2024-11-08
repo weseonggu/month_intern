@@ -1,8 +1,12 @@
-package com.sparta26.baemin.jwt;
+package com.intellipick.intern.security;
 
+import com.intellipick.intern.domain.type.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -10,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class ForContext {
 
     private Long id;
-    private String email;
-    private String role;
+    private String username;
+    private Set<UserRole> authoritiesSet;
 }

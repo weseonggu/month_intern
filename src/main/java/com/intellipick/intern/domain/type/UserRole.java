@@ -1,15 +1,12 @@
-package com.sparta26.baemin.member.entity;
+package com.intellipick.intern.domain.type;
 
 import lombok.Getter;
 
 @Getter
 public enum UserRole {
-//  고객             가게주인      관리자         매니저
-//    ROLE_CUSTOMER, ROLE_OWNER, ROLE_MASTER, ROLE_MANAGER;
-    ROLE_CUSTOMER("ROLE_CUSTOMER"),
-    ROLE_OWNER("ROLE_OWNER"),
-    ROLE_MASTER("ROLE_MASTER"),
-    ROLE_MANAGER("ROLE_MANAGER");
+    ROLE_USER("ROLE_USER"),
+    ROLE_ADMIN("ROLE_ADMIN"),
+    ROLE_MASTER("ROLE_MASTER");
 
     private final String value;
 

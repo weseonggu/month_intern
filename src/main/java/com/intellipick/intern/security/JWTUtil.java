@@ -1,7 +1,8 @@
-package com.sparta26.baemin.jwt;
+package com.intellipick.intern.security;
 
 
-import com.sparta26.baemin.member.entity.UserRole;
+
+import com.intellipick.intern.domain.type.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -32,7 +33,7 @@ public class JWTUtil {
 	@Value("${jwt.time}")
 	private long TOKEN_TIME;
 
-	@Value("${jwt.key}") // Base64 Encode 한 SecretKey
+	@Value("${jwt.access-key}") // Base64 Encode 한 SecretKey
 	private String secretKey;
 	private Key key;
 	private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -46,13 +47,13 @@ public class JWTUtil {
 	}
 
 	// 토큰 생성
-	public String createToken(Long id, String email, UserRole role) {
+	public String createToken(Long id, String username, UserRole role) {
 		Date date = new Date();
 
 		return BEARER_PREFIX +
 				Jwts.builder()
 						.claim("id",id)
-						.claim("email", email)
+						.claim("username", username)
 						.claim("role", role) // 사용자 권한
 						.setExpiration(new Date(date.getTime() + TOKEN_TIME)) // 만료 시간
 						.setIssuedAt(date) // 발급일

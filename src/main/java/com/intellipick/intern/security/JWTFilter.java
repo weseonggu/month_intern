@@ -1,5 +1,6 @@
-package com.sparta26.baemin.jwt;
+package com.intellipick.intern.security;
 
+import com.intellipick.intern.domain.type.UserRole;
 import io.jsonwebtoken.*;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  *  JWT토큰 유효성 검증 필터
@@ -21,12 +26,13 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class JWTFilter extends OncePerRequestFilter {
-	@Value("${jwt.key}")
+
 	private String ymlKey;
 	private final JWTUtil jwtUtil;
 
-	public JWTFilter(JWTUtil jwtUtil) {
+	public JWTFilter(JWTUtil jwtUtil, @Value("${jwt.access-key}") String ymlKey) {
 		this.jwtUtil = jwtUtil;
+		this.ymlKey = ymlKey;
 	}
 
 
@@ -52,9 +58,14 @@ public class JWTFilter extends OncePerRequestFilter {
 				Claims claims = jwtUtil.getUserInfoFromToken(tokenValue);
 				Long id = ((Integer) claims.get("id")).longValue();
 				String username = String.valueOf(claims.get("email"));
-				String role = (String) claims.get("role");
+				String roles = (String) claims.get("role");
 
-				ForContext context = new ForContext(id, username, role);
+				// 권한
+				Set<UserRole> authoritiesSet = Arrays.stream(roles.split(","))
+						.map(UserRole::fromString)
+						.collect(Collectors.toSet());
+
+				ForContext context = new ForContext(id, username, authoritiesSet);
 
 				CustomUserDetails customUserDetails = new CustomUserDetails(context);
 				Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null,

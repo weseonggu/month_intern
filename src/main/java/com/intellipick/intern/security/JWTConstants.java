@@ -1,4 +1,4 @@
-package com.sparta26.baemin.jwt;
+package com.intellipick.intern.security;
 
 public class JWTConstants {
 	
