@@ -16,7 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -54,9 +53,9 @@ public class JWTFilter extends OncePerRequestFilter {
 					throw new SecurityException("토큰이 없습니다.");
 				}
 				tokenValue = jwtUtil.substringToken(tokenValue);
-				jwtUtil.validateToken(tokenValue);
-				Claims claims = jwtUtil.getUserInfoFromToken(tokenValue);
-				Long id = ((Integer) claims.get("id")).longValue();
+				jwtUtil.validateAccessToken(tokenValue);
+				Claims claims = jwtUtil.getUserInfoFromAccessToken(tokenValue);
+				Long id = claims.get("id", Long.class);
 				String username = String.valueOf(claims.get("email"));
 				String roles = (String) claims.get("role");
 

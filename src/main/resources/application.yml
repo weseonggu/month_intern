@@ -8,4 +8,5 @@ spring:
 jwt:
   access-key: ag1a54fgvae56rgv1adfv6ar1bad32fb1asd56fb41sdfgb1sd5thn1sdbn1sd5fghbn1sdfg56bn1sdfbn1sgn
   refresh-key: gsd5g1sd5gh1sdhg78sb4d2fgb41sdf5fhg4b1sd5fgh15sdfg15sd4gs5d6g4sd2bf1sdfc56b41sd2fh1sd5fhgb
-  time: 900000
+  a-time: 900000 # 15?
+  r-time: 604800000 #1??
