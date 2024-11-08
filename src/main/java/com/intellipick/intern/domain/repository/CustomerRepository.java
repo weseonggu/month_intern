@@ -1,4 +1,4 @@
-package com.intellipick.intern.infrastructure;
+package com.intellipick.intern.domain.repository;
 
 import com.intellipick.intern.domain.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

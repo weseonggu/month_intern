@@ -35,10 +35,13 @@ public class Customer {
     ////////////////////////////////////////////////////////////////////////////
 
     public static Customer create(String username, String nickname, String password) {
-        return Customer.builder().username(username).nickname(nickname).password(password).build();
+        return Customer.builder().username(username).nickname(nickname).password(password).build().initializeAuthorities();
     }
-
+    private Customer initializeAuthorities() {
+        this.authorities = new HashSet<>();
+        return this;
+    }
     public void addAuthority(AuthorityEntity authority){
-        authorities.add(authority);
+        this.authorities.add(authority);
     }
 }

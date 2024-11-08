@@ -50,10 +50,7 @@ public class SecurityConfig {
 
 
         http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers( "/v1/signUp","/v1/logIn").permitAll()
-                .requestMatchers("/v1/members/update", "/v1/members/delete/**").hasAnyRole("CUSTOMER","MANAGER","MASTER","OWNER")
-                .requestMatchers("/v1/members/myinfo/**").hasAnyRole("CUSTOMER","OWNER")
-                .requestMatchers("/v1/members/page").hasAnyRole("MANAGER","MASTER")
+                .requestMatchers( "/signup","/login").permitAll()
                 .anyRequest().authenticated()
         );
 
