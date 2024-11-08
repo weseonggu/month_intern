@@ -50,7 +50,7 @@ public class JWTUtil {
 	}
 
 	// 토큰 생성
-	public String createAccessToken(Long id, String username, UserRole role) {
+	public String createAccessToken(Long id, String username, String role) {
 		Date date = new Date();
 
 		return BEARER_PREFIX +
@@ -64,7 +64,7 @@ public class JWTUtil {
 						.compact();
 	}
 
-	public String createRefreshToken(Long id, String username, UserRole role) {
+	public String createRefreshToken(Long id, String username, String role) {
 		Date date = new Date();
 
 		return BEARER_PREFIX +
