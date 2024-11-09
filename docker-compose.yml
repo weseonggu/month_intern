@@ -1,15 +1,4 @@
 services:
-  redis:
-    image: redis/redis-stack
-    container_name: redis-container
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis-data:/data
-    command: [ "redis-server", "--requirepass", "systempass" ]
-    networks:
-      - intern-network
-
   mysql:
     image: mysql:8-oracle
     container_name: mysql-container

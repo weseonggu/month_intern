@@ -3,18 +3,12 @@
 spring:
   application:
     name: MonthIntern
-  data:
-    redis:
-      host: localhost
-      port: 6379
-      username: default
-      password: systempass
-      timeout: 3000
   datasource:
     url: jdbc:mysql://localhost:3306/work
     username: your_username
     password: your_password
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
-      hibernate:
-        ddl-auto: update
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQLDialect

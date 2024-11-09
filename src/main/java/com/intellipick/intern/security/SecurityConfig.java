@@ -1,7 +1,5 @@
-package com.sparta26.baemin.security;
+package com.intellipick.intern.security;
 
-import com.sparta26.baemin.jwt.JWTFilter;
-import com.sparta26.baemin.jwt.JwtAuthenticationEntryPoint;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -52,10 +50,14 @@ public class SecurityConfig {
 
 
         http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers( "/v1/signUp","/v1/logIn").permitAll()
-                .requestMatchers("/v1/members/update", "/v1/members/delete/**").hasAnyRole("CUSTOMER","MANAGER","MASTER","OWNER")
-                .requestMatchers("/v1/members/myinfo/**").hasAnyRole("CUSTOMER","OWNER")
-                .requestMatchers("/v1/members/page").hasAnyRole("MANAGER","MASTER")
+                .requestMatchers( "/signup","/sign","/swagger-ui").permitAll()
+                .requestMatchers(
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/webjars/**"
+                ).permitAll()
+//                .requestMatchers("/test").hasAnyRole("MASTER")
                 .anyRequest().authenticated()
         );
 

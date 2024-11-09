@@ -1,23 +1,17 @@
 
 spring:
   application:
-    name: AuthService
-  data:
-    redis:
-      host: localhost
-      port: 6379
-      username: default
-      password: systempass
-      timeout: 3000
+    name: MonthIntern
   datasource:
     url: jdbc:mysql://localhost:3306/work
     username: intern
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
       hibernate:
-        ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_sql: true
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect

@@ -1,12 +1,13 @@
-package com.sparta26.baemin.jwt;
+package com.intellipick.intern.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 public class CustomUserDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
@@ -19,9 +20,9 @@ public class CustomUserDetails implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		Set<GrantedAuthority> authorities = new HashSet<>();
-
-		authorities.add(new SimpleGrantedAuthority(context.getRole()));
+		Set<GrantedAuthority> authorities = context.getAuthoritiesSet().stream()
+				.map(role -> new SimpleGrantedAuthority(role.getValue()))
+				.collect(Collectors.toSet());
 
 		return authorities;
 
@@ -38,7 +39,7 @@ public class CustomUserDetails implements UserDetails{
 	}
 	@Override
 	public String getUsername() {
-		return context.getEmail();
+		return context.getUsername();
 	}
 	@Override
 	public boolean isAccountNonExpired() {
@@ -56,8 +57,4 @@ public class CustomUserDetails implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	public String getEmail() {
-		return context.getEmail();
-	}
-	public  String getRole() { return context.getRole();}
 }
