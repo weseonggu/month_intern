@@ -63,7 +63,7 @@ public class AuthController {
         return new ResponseEntity<>(tokens, headers, HttpStatus.OK);
     }
 
-    
+
 
     @GetMapping("/test")
     public ResponseEntity<?> test(@AuthenticationPrincipal CustomUserDetails userDetails){

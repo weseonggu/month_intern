@@ -1,11 +1,8 @@
 package com.intellipick.intern.security;
 
 
-
-import com.intellipick.intern.domain.type.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;

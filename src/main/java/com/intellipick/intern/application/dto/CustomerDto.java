@@ -2,7 +2,6 @@ package com.intellipick.intern.application.dto;
 
 import com.intellipick.intern.domain.model.AuthorityEntity;
 import com.intellipick.intern.domain.model.Customer;
-import com.intellipick.intern.domain.type.UserRole;
 import lombok.*;
 
 import java.util.HashSet;
