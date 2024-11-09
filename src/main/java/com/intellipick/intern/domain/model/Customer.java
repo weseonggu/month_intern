@@ -30,7 +30,7 @@ public class Customer {
     ///////////////////////////////////////////////////////////////////////////
 
     @OneToMany(mappedBy="customer",cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
-    private Set<AuthorityEntity> authorities =  new HashSet<>();
+    private Set<AuthorityEntity> authorities;
 
     ////////////////////////////////////////////////////////////////////////////
 

@@ -18,7 +18,7 @@ public class CustomerService {
 
         Customer customer = Customer.create(requestSignUpDto.getUsername(), requestSignUpDto.getNickname(), requestSignUpDto.getPassword());
 
-        AuthorityEntity authorityEntity = AuthorityEntity.create(UserRole.ROLE_USER);
+        AuthorityEntity authorityEntity = AuthorityEntity.create(UserRole.ROLE_USER,customer);
 
         customer.addAuthority(authorityEntity);
 
@@ -26,4 +26,5 @@ public class CustomerService {
 
         return CustomerDto.toDto(customer);
     }
+
 }

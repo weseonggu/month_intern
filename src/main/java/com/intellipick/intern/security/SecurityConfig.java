@@ -50,7 +50,14 @@ public class SecurityConfig {
 
 
         http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers( "/signup","/login").permitAll()
+                .requestMatchers( "/signup","/sign","/swagger-ui").permitAll()
+                .requestMatchers(
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/webjars/**"
+                ).permitAll()
+//                .requestMatchers("/test").hasAnyRole("MASTER")
                 .anyRequest().authenticated()
         );
 

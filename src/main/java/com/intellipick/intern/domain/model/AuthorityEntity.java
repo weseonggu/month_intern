@@ -32,7 +32,7 @@ public class AuthorityEntity {
     
     /////////////////////////////////////////////////////////////////////////
 
-    public static AuthorityEntity create(UserRole role){
-        return AuthorityEntity.builder().role(role).build();
+    public static AuthorityEntity create(UserRole role, Customer customer){
+        return AuthorityEntity.builder().role(role).customer(customer).build();
     }
 }

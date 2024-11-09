@@ -56,7 +56,7 @@ public class JWTFilter extends OncePerRequestFilter {
 				jwtUtil.validateAccessToken(tokenValue);
 				Claims claims = jwtUtil.getUserInfoFromAccessToken(tokenValue);
 				Long id = claims.get("id", Long.class);
-				String username = String.valueOf(claims.get("email"));
+				String username = String.valueOf(claims.get("username"));
 				String roles = (String) claims.get("role");
 
 				// 권한
@@ -74,20 +74,20 @@ public class JWTFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(authToken);
 				logger.info("[인중 가 통과]: "+username+" endpoint: "+req.getRequestURI());
 			}catch (SecurityException | MalformedJwtException | SignatureException e) {
-				logger.error("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다.");
+				logger.warn("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다.");
 				req.setAttribute("exception", e);
 			} catch (ExpiredJwtException e) {
-				logger.error("Expired JWT token, 만료된 JWT token 입니다.");
+				logger.warn("Expired JWT token, 만료된 JWT token 입니다.");
 				req.setAttribute("exception", e);
 			} catch (UnsupportedJwtException e) {
-				logger.error("Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다.");
+				logger.warn("Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다.");
 				req.setAttribute("exception", e);
 			} catch (IllegalArgumentException e) {
-				logger.error("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
+				logger.warn("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
 				req.setAttribute("exception", e);
 			}
 			catch (Exception e) {
-				logger.error("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
+				logger.warn("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
 				req.setAttribute("exception", e);
 			}
 			finally {
@@ -99,10 +99,10 @@ public class JWTFilter extends OncePerRequestFilter {
 
 	@Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-    	if( request.getServletPath().equals("/signUp")) {
+    	if( request.getServletPath().equals("/signup")) {
     		return true;
     	}
-    	else if( request.getServletPath().equals("/logIn")) {
+    	else if( request.getServletPath().equals("/sign")) {
     		return true;
     	}
     	else {
