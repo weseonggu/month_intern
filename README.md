@@ -6,5 +6,5 @@
 로컬 머신: 프로파일 dev로 설정
 
 ### 배포
-<iframe src="http://13.125.209.30:8080/swagger-ui/index.html" width="100%" height="600px"></iframe>
+[Swagger UI](http://13.125.209.30:8080/swagger-ui/index.html)
 
